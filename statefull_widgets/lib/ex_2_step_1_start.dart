@@ -1,0 +1,79 @@
+import 'package:flutter/material.dart';
+
+void main() => runApp(
+  MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        title: const Text("Favorite cards"),
+      ),
+      body: Column(
+        children: [
+          FavoriteCard(isFavorite: true),
+          FavoriteCard(isFavorite: false),
+          FavoriteCard(isFavorite: true),
+        ],
+      ),
+    ),
+  ),
+);
+
+class FavoriteCard extends StatefulWidget {
+  const FavoriteCard({super.key, required this.isFavorite});
+  final bool isFavorite;
+
+  @override
+  State<FavoriteCard> createState() => _FavoriteCardState();
+}
+
+class _FavoriteCardState extends State<FavoriteCard> {
+  late bool _isFavorite = widget.isFavorite;
+
+  @override
+  void didUpdateWidget(covariant FavoriteCard oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (oldWidget.isFavorite != widget.isFavorite) {}
+  }
+
+  void toggleFavorite() {
+    setState(() {
+      _isFavorite = !_isFavorite;
+    });
+  }
+
+  Icon displayFavorite() {
+    if (!_isFavorite) {
+      return Icon(Icons.favorite_outline);
+    }
+    return Icon(Icons.favorite, color: Colors.red);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(border: Border(bottom: BorderSide())),
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: 10,
+              children: [
+                Text(
+                  "title",
+                  style: TextStyle(color: Colors.blue[800], fontSize: 18),
+                ),
+                Text("description", style: TextStyle(fontSize: 18)),
+              ],
+            ),
+          ),
+          IconButton(onPressed: toggleFavorite, icon: displayFavorite()),
+        ],
+      ),
+    );
+  }
+}
