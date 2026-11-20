@@ -40,10 +40,14 @@ class _FavoriteCardState extends State<FavoriteCard> {
 
   Icon displayFavorite() {
     if (!_isFavorite) {
-      return Icon(Icons.favorite_outline);
+      return favoriteOutline;
     }
-    return Icon(Icons.favorite, color: Colors.red);
+    return favorite;
   }
+
+  Icon get favorite => Icon(Icons.favorite, color: Colors.red);
+
+  Icon get favoriteOutline => Icon(Icons.favorite_outline);
 
   @override
   Widget build(BuildContext context) {
