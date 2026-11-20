@@ -31,12 +31,6 @@ class FavoriteCard extends StatefulWidget {
 class _FavoriteCardState extends State<FavoriteCard> {
   late bool _isFavorite = widget.isFavorite;
 
-  @override
-  void didUpdateWidget(covariant FavoriteCard oldWidget) {
-    super.didUpdateWidget(oldWidget);
-
-    if (oldWidget.isFavorite != widget.isFavorite) {}
-  }
 
   void toggleFavorite() {
     setState(() {
